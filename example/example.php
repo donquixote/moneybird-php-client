@@ -105,6 +105,7 @@ if (getValue('authorizationcode') === null) {
 }
 
 // Create the Moneybird client
+/** @noinspection PhpUnhandledExceptionInspection */
 $connection = connect($redirectUrl, $clientId, $clientSecret);
 $connection->setAdministrationId($administrationId);
 $moneybird = new \Picqer\Financials\Moneybird\Moneybird($connection);
@@ -114,6 +115,7 @@ try {
     $salesInvoices = $moneybird->salesInvoice()->get();
 
     foreach ($salesInvoices as $salesInvoice) {
+        /** @noinspection ForgottenDebugOutputInspection */
         var_dump($salesInvoice);
     }
 } catch (\Exception $e) {
