@@ -407,7 +407,7 @@ class Connection
     private function parseExceptionForErrorMessages(Exception $exception)
     {
         if (!$exception instanceof BadResponseException) {
-            throw new ApiException($exception->getMessage());
+            throw new ApiException($exception->getMessage(), 0, $exception);
         }
 
         $response = $exception->getResponse();
@@ -423,7 +423,7 @@ class Connection
 
         $this->checkWhetherRateLimitHasBeenReached($response, $errorMessage);
 
-        throw new ApiException('Error ' . $response->getStatusCode() . ': ' . $errorMessage, $response->getStatusCode());
+        throw new ApiException('Error ' . $response->getStatusCode() . ': ' . $errorMessage, $response->getStatusCode(), $exception);
     }
 
     /**
