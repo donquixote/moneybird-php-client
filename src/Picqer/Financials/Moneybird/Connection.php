@@ -411,6 +411,11 @@ class Connection
         }
 
         $response = $exception->getResponse();
+
+        if (null === $response) {
+            throw new ApiException('Response is NULL.', 0, $exception);
+        }
+
         Psr7\rewind_body($response);
         $responseBody = $response->getBody()->getContents();
         $decodedResponseBody = json_decode($responseBody, true);
