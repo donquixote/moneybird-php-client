@@ -162,7 +162,7 @@ abstract class ApiConnectionBase extends ClientHavingBase implements ApiConnecti
             return $this->parseResponse($response);
         }
         catch (\Exception $e) {
-            throw new ApiException($this->parseExceptionForErrorMessages($e), 0, $e);
+            throw $this->parseExceptionForErrorMessages($e);
         }
     }
 
@@ -182,7 +182,7 @@ abstract class ApiConnectionBase extends ClientHavingBase implements ApiConnecti
             return $this->parseResponse($response);
         }
         catch (\Exception $e) {
-            throw new ApiException($this->parseExceptionForErrorMessages($e), 0, $e);
+            throw $this->parseExceptionForErrorMessages($e);
         }
     }
 
@@ -205,10 +205,7 @@ abstract class ApiConnectionBase extends ClientHavingBase implements ApiConnecti
             return $this->parseResponse($response);
         }
         catch (\Exception $e) {
-            throw new ApiException(
-                $this->parseExceptionForErrorMessages($e),
-                0,
-                $e);
+            throw $this->parseExceptionForErrorMessages($e);
         }
     }
 
